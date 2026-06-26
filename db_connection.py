@@ -1,4 +1,4 @@
-from flask import Flask,jsonify,send_from_directory
+from flask import Flask,jsonify, render_template,send_from_directory
 import psycopg2
 from psycopg2.extras import RealDictCursor
 import os
@@ -20,7 +20,7 @@ def get_db_connection():
 
 @app.route('/')
 def index():
-    return send_from_directory('public', 'index.html')
+    return render_template('index.html') 
 
 # API Endpoint to fetch data from the database
 @app.route('/api/data', methods=['GET'])
