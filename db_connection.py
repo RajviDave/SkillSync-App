@@ -6,9 +6,9 @@ import os
 app = Flask(__name__)
 
 db_config = {
-    "dbname": "your_database_name",
-    "user": "your_postgres_user",
-    "password": "your_database_password",
+    "dbname": "skill_sync",
+    "user": "postgres",
+    "password": "Aqws@434",
     "host": "localhost",
     "port": "5432"
 }
