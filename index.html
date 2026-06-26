@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PostgreSQL Data Display (Python)</title>
+    <style>
+        table { border-collapse: collapse; width: 50%; margin: 20px auto; font-family: sans-serif; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+
+    <h2 style="text-align: center;">Database Users (Fetched via Python)</h2>
+    
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <!-- JavaScript will insert rows here -->
+        </tbody>
+    </table>
+
+    <script>
+        // Fetch data from the Flask API endpoint
+        fetch('/api/data')
+            .then(response => {
+                if (!response.ok) throw new Error('Network response error');
+                return response.json();
+            })
+            .then(data => {
+                const tableBody = document.getElementById('table-body');
+                
+                // Dynamically build rows
+                data.forEach(user => {
+                    const row = `<tr>
+                        <td>${user.id}</td>
+                        <td>${user.name}</td>
+                        <td>${user.email}</td>
+                    </tr>`;
+                    tableBody.innerHTML += row;
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+</html>
